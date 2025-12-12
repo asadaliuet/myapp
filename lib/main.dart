@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/home_screen.dart';
+import 'screens/login_screen.dart';
 
 void main() {
   runApp(const PCMSelectionApp());
@@ -16,8 +16,9 @@ class PCMSelectionApp extends StatelessWidget {
         primarySwatch: Colors.green,
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        scaffoldBackgroundColor: Colors.grey[50],
       ),
-      home: const PCMSelectionHome(),
+      home: const LoginScreen(), // Starts at Login now
       debugShowCheckedModeBanner: false,
     );
   }

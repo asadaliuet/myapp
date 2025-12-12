@@ -91,22 +91,28 @@ class TeamScreen extends StatelessWidget {
 
             // 4. Research Team Members
             const TeamMemberCard(
-              name: "Abdulrahman Oladapo",
+              name: "Saly Abdou",
               role: "Research Member",
-              bio: "A graduate student in Architectural Engineering at KFUPM, focuses on data-driven sustainable building technologies, particularly building envelope performance in hot-humid climates. He applies machine learning to develop platforms for PCM selection.",
+              bio: "An architect and researcher focused on sustainable design, building performance, and smart city technologies. She holds a B.Sc. in Architectural Engineering from Mansoura University and an M.Sc. from KFUPM. She has worked as a Teaching Assistant at both institutions and as a Senior Architect at EMARA Designs. Saly is also a certified LEED Green Associate.",
               borderColor: Colors.green,
             ),
             const TeamMemberCard(
-              name: "Olatunji Temileyin Charles",
+              name: "Sidra Idrees",
               role: "Research Member",
-              bio: "An Architectural Engineer and Project manager with specialization in Integrated systems design and advanced project management. He currently serves as a graduate student with research focus on Building envelopes design.",
+              bio: "An architect and researcher specializing in sustainable materials, building performance, and thermal energy–efficient design. She holds a B.Sc. in Architectural Engineering from UET Lahore and is currently a research student at King Fahd University of Petroleum and Minerals (KFUPM). Her ongoing research focuses on developing a Phase Change Material (PCM) Advisory Application to support energy-efficient building design. Sidra’s interests include climate-responsive architecture, building simulation, and innovative material technologies.",
               borderColor: Colors.purple,
             ),
             const TeamMemberCard(
-              name: "Abdullah Zaki",
+              name: "Samia",
               role: "Research Member",
-              bio: "An Architect & Project Engineer specializing in sustainable building technologies and machine-learning-driven materials selection. He leads technical office documentation and focuses on high-performance envelopes.",
+              bio: "an Architectural Engineering professional with a Bachelor’s and Master’s degree in the field. She works as a Teaching Assistant, contributing to instruction and research, and has two years of industry experience in estimation. This blend of academic, technical, and practical expertise supports her role in developing the PCM application",
               borderColor: Colors.orange,
+            ),
+            const TeamMemberCard(
+              name: "Sally Gogo",
+              role: "Research Member",
+              bio: "Sally Gogo is an senior architect and researcher focused on sustainable design,energy modeling and advanced  building envelope, She holds a B.Sc. in Architectural Engineering.",
+              borderColor: Colors.green,
             ),
           ],
         ),

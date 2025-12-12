@@ -4,7 +4,7 @@ import '../logic/material_logic.dart';
 import '../models/result_model.dart';
 import '../widgets/custom_dropdown.dart';
 import '../widgets/result_card.dart';
-import '../widgets/info_header.dart';
+// import '../widgets/info_header.dart';
 
 class MaterialSelectionTab extends StatefulWidget {
   final Animation<double> scaleAnimation;
@@ -49,7 +49,7 @@ class _MaterialSelectionTabState extends State<MaterialSelectionTab> {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          const StudentInfoHeader(),
+          // const StudentInfoHeader(),
           const SizedBox(height: 16),
           Card(
             elevation: 4,
