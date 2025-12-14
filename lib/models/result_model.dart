@@ -1,13 +1,19 @@
 class RecommendationResult {
-  final String result;
+  final int ruleId;
+  final String pcmMaterial;
+  final String position;
   final String confidence;
   final String justification;
-  final int ruleId;
+  final String reference;
+  final int matchScore; // Used for sorting top results
 
   RecommendationResult({
-    required this.result,
+    required this.ruleId,
+    required this.pcmMaterial,
+    required this.position,
     required this.confidence,
     required this.justification,
-    required this.ruleId,
+    required this.reference,
+    required this.matchScore,
   });
 }

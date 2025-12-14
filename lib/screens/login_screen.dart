@@ -41,8 +41,8 @@ class _LoginScreenState extends State<LoginScreen> {
   };
 
   // Placeholder Logo URL
-  final String _logoUrl = "https://cdn-icons-png.flaticon.com/512/2231/2231647.png";
-  // final String _logoUrl = "https://res.cloudinary.com/dm8kxucdf/image/upload/v1765573539/gbzu0svvp0bmysgr3f8d.png";
+  // final String _logoUrl = "https://cdn-icons-png.flaticon.com/512/2231/2231647.png";
+  final String _logoUrl = "https://res.cloudinary.com/dm8kxucdf/image/upload/v1765573539/gbzu0svvp0bmysgr3f8d.png";
 
   void _login() async {
     if (_formKey.currentState!.validate()) {

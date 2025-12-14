@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'home_screen.dart';
-import 'pcm_info_screen.dart';
-import 'guide_screen.dart';
-import 'team_screen.dart';
-import 'login_screen.dart';
+import 'pcm_info_screen.dart'; // Knowledge Base
+import 'guide_screen.dart'; // Quick Guide
+import 'team_screen.dart'; // Team Page
+import 'login_screen.dart'; // For Logout
+// NEW WIZARD IMPORTS
+import 'wizard/wizard_state.dart';
+import 'wizard/step_screens.dart';
 
 class DashboardScreen extends StatelessWidget {
-  // 1. Add this variable to hold the email
-  final String userEmail; 
+  final String userEmail;
 
-  // 2. Update constructor to require the email
   const DashboardScreen({super.key, required this.userEmail});
 
   @override
   Widget build(BuildContext context) {
-    // Helper to get a simple name from email (e.g., "asad" from "asad@gmail.com")
+    // Extract name from email (e.g., "asad" from "asad@gmail.com")
     final String displayName = userEmail.split('@')[0];
 
     return Scaffold(
@@ -27,8 +27,8 @@ class DashboardScreen extends StatelessWidget {
             icon: const Icon(Icons.logout),
             onPressed: () {
               Navigator.pushReplacement(
-                context, 
-                MaterialPageRoute(builder: (context) => const LoginScreen())
+                context,
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
               );
             },
           )
@@ -40,14 +40,20 @@ class DashboardScreen extends StatelessWidget {
           children: [
             UserAccountsDrawerHeader(
               decoration: BoxDecoration(color: Colors.green[700]),
-              // 3. Display the formatted name and actual email
-              accountName: Text(displayName, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-              accountEmail: Text(userEmail), 
+              accountName: Text(
+                displayName.toUpperCase(),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+              accountEmail: Text(userEmail),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.white,
                 child: Text(
-                  displayName[0].toUpperCase(), // First letter of email
-                  style: const TextStyle(fontSize: 24, color: Colors.green, fontWeight: FontWeight.bold),
+                  displayName[0].toUpperCase(),
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.green[800],
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
@@ -57,14 +63,39 @@ class DashboardScreen extends StatelessWidget {
               onTap: () => Navigator.pop(context),
             ),
             ListTile(
-              leading: const Icon(Icons.calculate),
-              title: const Text('Selection Tool'),
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const PCMSelectionHome())),
+              leading: const Icon(Icons.rocket_launch), // Wizard Icon
+              title: const Text('Selection Wizard'),
+              onTap: () {
+                Navigator.pop(context); // Close drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => Step1Building(state: WizardState()),
+                  ),
+                );
+              },
             ),
-             ListTile(
+            ListTile(
+              leading: const Icon(Icons.library_books),
+              title: const Text('Material Knowledge'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const PCMInfoScreen()),
+                );
+              },
+            ),
+            ListTile(
               leading: const Icon(Icons.people),
-              title: const Text('Research Team'),
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const TeamScreen())),
+              title: const Text('Meet the Experts'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const TeamScreen()),
+                );
+              },
             ),
           ],
         ),
@@ -74,13 +105,12 @@ class DashboardScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // 4. Update Welcome Text
             Text(
               "Welcome, $displayName",
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const Text(
-              "What would you like to do today?",
+              "Select a tool to begin your analysis.",
               style: TextStyle(color: Colors.grey),
             ),
             const SizedBox(height: 20),
@@ -90,31 +120,45 @@ class DashboardScreen extends StatelessWidget {
               context,
               title: "Quick Start Guide",
               subtitle: "Learn how to use the selection tool efficiently.",
-              icon: Icons.rocket_launch,
+              icon: Icons.lightbulb_outline,
               color: Colors.orange,
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const GuideScreen())),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const GuideScreen()),
+              ),
             ),
             const SizedBox(height: 16),
 
-            // Card 2: PCM Material Info
+            // Card 2: PCM Knowledge Base
             _buildDashboardCard(
               context,
-              title: "PCM Material Knowledge",
-              subtitle: "Explore properties of Paraffins, Salt Hydrates, and more.",
-              icon: Icons.library_books,
+              title: "PCM Knowledge Base",
+              subtitle: "Properties of Paraffins, Salt Hydrates, and Fatty Acids.",
+              icon: Icons.menu_book,
               color: Colors.blue,
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const PCMInfoScreen())),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const PCMInfoScreen()),
+              ),
             ),
             const SizedBox(height: 16),
 
-            // Card 3: The Calculator (Original App)
+            // Card 3: The New Wizard Tool
             _buildDashboardCard(
               context,
               title: "Start Selection Tool",
-              subtitle: "Calculate recommendations based on climate and position.",
-              icon: Icons.calculate,
+              subtitle: "AI-Powered PCM Recommendation Wizard (60 Rules).",
+              icon: Icons.auto_awesome,
               color: Colors.green,
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const PCMSelectionHome())),
+              onTap: () {
+                // START THE WIZARD FLOW HERE
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => Step1Building(state: WizardState()),
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -122,7 +166,8 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDashboardCard(BuildContext context, {
+  Widget _buildDashboardCard(
+    BuildContext context, {
     required String title,
     required String subtitle,
     required IconData icon,
@@ -154,7 +199,10 @@ class DashboardScreen extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(
