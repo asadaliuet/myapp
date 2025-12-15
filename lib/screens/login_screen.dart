@@ -40,9 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
     'ibrahim.wuni@kfupm.edu.sa': 'ibrahim',
   };
 
-  // Placeholder Logo URL
-  // final String _logoUrl = "https://cdn-icons-png.flaticon.com/512/2231/2231647.png";
-  final String _logoUrl = "https://res.cloudinary.com/dm8kxucdf/image/upload/v1765573539/gbzu0svvp0bmysgr3f8d.png";
+  // Built-in icon (No network URL needed)
+  final IconData _logoIcon = Icons.home_work_outlined;
 
   void _login() async {
     if (_formKey.currentState!.validate()) {
@@ -103,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Colors.green[50],
                     shape: BoxShape.circle,
                   ),
-                  child: Image.network(_logoUrl, fit: BoxFit.contain),
+                  child: Icon(_logoIcon, size: 60, color: Colors.green[700]),
                 ),
                 const SizedBox(height: 24),
 

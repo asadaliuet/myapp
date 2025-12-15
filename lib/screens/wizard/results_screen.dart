@@ -112,7 +112,7 @@ class ResultsScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Rule #${item.ruleId}", style: const TextStyle(color: Colors.grey, fontSize: 12)),
+                // Text("Rule #${item.ruleId}", style: const TextStyle(color: Colors.grey, fontSize: 12)),
                 Text("Confidence: ${item.confidence}", style: TextStyle(color: Colors.green[700], fontWeight: FontWeight.bold)),
               ],
             ),
